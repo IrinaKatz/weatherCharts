@@ -1,0 +1,86 @@
+<div class="container-md my-7 flex justify-center text-4xl font-light text-blue-950">
+  <h1>Your weather charts</h1>
+</div>
+
+<mat-card class="bg-white">
+  <!--  <div class="max-w-7xl py-6 px-6 py-10">-->
+  <!--    <div class="bg-gray-100 px-10 pt-3 shadow-2xl rounded-3xl">-->
+
+
+  <mat-toolbar-row class="flex flex-row justify-between">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="chartsPanelOpenState= true"
+                           (closed)="chartsPanelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Charts to display
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span class="flex flex-col bg-white p-4 rounded-xl shadow-blue-950">
+                        <mat-checkbox class="example-margin">Temperature</mat-checkbox>
+                        <mat-checkbox class="example-margin">Apparent temperature</mat-checkbox>
+                        <mat-checkbox class="example-margin">Humidity</mat-checkbox>
+                        <mat-checkbox class="example-margin">Wind speed</mat-checkbox>
+              </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="typePanelOpenState = true"
+                           (closed)="typePanelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            How to display
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span class="flex flex-col bg-white p-4 rounded-xl shadow-blue-950">
+                        <mat-checkbox class="example-margin" [checked]="true">In different charts</mat-checkbox>
+                        <mat-checkbox class="example-margin">All in one chart</mat-checkbox>
+              </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="grid" style="min-width: 300px">
+      <mat-expansion-panel (opened)="typePanelOpenState = true"
+                           (closed)="typePanelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Period
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span class="flex flex-col bg-white p-4 rounded-xl shadow-blue-950">
+<mat-form-field style="min-width: 100px">
+    <mat-label>Enter a date range</mat-label>
+  <mat-date-range-input [rangePicker]="picker">
+    <input matStartDate placeholder="Start date">
+    <input matEndDate placeholder="End date">
+  </mat-date-range-input>
+  <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>
+
+
+              </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="primary">Show</button>
+
+
+  </mat-toolbar-row>
+
+
+
+
+  <!--    </div>-->
+  <!--  </div>-->
+</mat-card>
+<div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-12 lg:text-left">
+  <h2 class="text-2xl font-bold tracking-tight text-blue-950">Please select the charts to display</h2>
+  <p class="mt-6 text-lg leading-8 text-gray-300">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla.</p>
+  <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+    <a class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Show</a>
+  </div>
+</div>
