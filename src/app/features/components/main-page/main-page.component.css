@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-expansion-panel {
+  background-color: whitesmoke;
+  min-height: 56px;
+}
+
+.mat-mdc-button.mat-mdc-button-base[_ngcontent-ng-c4156076039], .mat-mdc-raised-button.mat-mdc-button-base[_ngcontent-ng-c4156076039], .mat-mdc-unelevated-button.mat-mdc-button-base[_ngcontent-ng-c4156076039], .mat-mdc-outlined-button.mat-mdc-button-base[_ngcontent-ng-c4156076039] {
+  height: 54px;
+  width: 80px;
+  border-radius: 8px;
+  font-size: 17px;
+
+}

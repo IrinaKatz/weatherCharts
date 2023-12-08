@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
-import {WeatherModel} from "./weather-model";
+import {WeatherDTO} from "./weather-model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,11 @@ export class ChartsDataService {
 
   constructor(private http: HttpClient) { }
 
-  public getData(startDate: string, endDate: string): Observable<WeatherModel> {
+  public getData(startDate: string, endDate: string): Observable<WeatherDTO> {
 
     let url = this.urlBasis+`start_date=${startDate}&end_date=${endDate}`;
 
-    return this.http.get<WeatherModel>(url).pipe(map((data:WeatherModel) => {
+    return this.http.get<WeatherDTO>(url).pipe(map((data:WeatherDTO) => {
       console.log(data);
       return data;
     }));

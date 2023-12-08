@@ -11,7 +11,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {JsonPipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -23,12 +28,20 @@ import {MatNativeDateModule} from "@angular/material/core";
     BrowserAnimationsModule,
     HttpClientModule,
     MatExpansionModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
     MatToolbarModule,
     MatCheckboxModule,
     MatCardModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatInputModule,
+    MatRippleModule,
+    FormsModule,
+    ReactiveFormsModule,
+    JsonPipe
   ],
   providers: [],
   bootstrap: [AppComponent]
