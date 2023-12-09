@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {MatAccordion} from "@angular/material/expansion";
 
@@ -8,7 +8,7 @@ import {MatAccordion} from "@angular/material/expansion";
   styleUrls: ['./selector-bar.component.css'],
 })
 
-export class SelectorBarComponent implements OnInit{
+export class SelectorBarComponent {
 
   @Output() selected: EventEmitter<any> = new EventEmitter<any>();
 
@@ -37,12 +37,6 @@ export class SelectorBarComponent implements OnInit{
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-
-  typeElement: any
-
-  ngOnInit(): void {
-    // this.typeElement = this.typePanel.nativeElement;
-  }
 
   setTypeSelected(value: boolean) {
     this.typeSelected.setValue(value);

@@ -30,7 +30,7 @@ export class ChartsBlockComponent implements OnInit {
     }
   }
 
-  private makeShortLabels(labels: string[]): string[]{
+  makeShortLabels(labels: string[]): string[]{
     let newLabels:string[] = [];
     for(let label of labels) {
       newLabels.push(`${label.slice(8,10)}/${label.slice(11)}`);

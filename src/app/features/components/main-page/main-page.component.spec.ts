@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MainPageComponent } from './main-page.component';
 import {ChartsDataService} from "../../../core/charts-data/charts-data.service";
 import {WeatherDTO} from "../../../core/charts-data/weather-model";
@@ -61,18 +60,13 @@ describe('MainPageComponent', () => {
   });
 
   it('should call ChartsDataService with correct parameters', () => {
-    // Arrange: Setup mock data and return value
     const mockEvent = {
       range: { start: new Date(2021, 0, 1), end: new Date(2021, 0, 2) },
       charts: { temperature1: true },
       type: false
     };
     mockChartsDataService.getData.and.returnValue(of(mockWeatherData));
-
-    // Act: Call the method that uses the service
     component.onSelected(mockEvent);
-
-    // Assert: Verify the service was called with correct parameters
     expect(mockChartsDataService.getData).toHaveBeenCalledWith('2021-1-01', '2021-1-02');
   });
 });

@@ -45,12 +45,11 @@ export class ChartsElementComponent implements OnInit{
         display: false,
         position: 'top',
       },
-
     }
   };
 
   private colors: string[] = ['darkBlue', 'darkRed', 'green', 'orange', 'purple', 'darkCyan'];
-  private currentColor: string = this.colors[0];
+  public currentColor: string = this.colors[0];
   ngOnInit(): void {
 
     if(!this.unitedData && this.data && this.time && this.chartName) {
@@ -74,7 +73,6 @@ export class ChartsElementComponent implements OnInit{
           datalabels: {
             display: false
           },
-
         },
         scales: {
           x: {},
@@ -94,7 +92,6 @@ export class ChartsElementComponent implements OnInit{
           datalabels: {
             display: false
           },
-
         },
         scales: {
           x: {},
@@ -111,11 +108,6 @@ export class ChartsElementComponent implements OnInit{
       }
     }
   }
-
-
-
-
-  // events
   public changeColor() {
     this.currentColor = this.colors[this.colors.indexOf(this.currentColor)+1];
     if(!this.unitedData) {
@@ -137,15 +129,11 @@ export class ChartsElementComponent implements OnInit{
         this.chartData.datasets.push({data: this.unitedData[i].data, label: this.unitedData[i].name, backgroundColor: this.colors[i+this.colors.indexOf(this.currentColor)]})
       }
     }
-
   }
-
-  private findMinValue(arr: number[]): number | undefined {
+  findMinValue(arr: number[]): number | undefined {
     if (arr.length === 0) {
       return undefined; // Return null if the array is empty
     }
     return Math.min(...arr);
   }
-
-
 }
