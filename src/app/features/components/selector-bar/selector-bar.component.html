@@ -1,0 +1,75 @@
+<div class="bg-white my-10 mx-2">
+<mat-accordion >
+  <mat-expansion-panel class="selector">
+    <mat-expansion-panel-header>
+      <mat-panel-title class=" font-light text-blue-950">
+        Charts data select
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+  <mat-card>
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker" [formGroup]="rangeSelected" [min]="myFilterMin" [max]="myFilterMax">
+        <input matStartDate placeholder="Start date" formControlName="start" [min]="myFilterMin" [max]="myFilterMax">
+        <input matEndDate placeholder="End date" formControlName="end" [min]="myFilterMin" [max]="myFilterMax">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </mat-card>
+
+  <mat-toolbar-row class=" gap-4 toolbar">
+
+<!--    data select-->
+    <mat-accordion [formGroup]="chartsSelected" multi>
+
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Charts to display
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span class="flex flex-col">
+                        <mat-checkbox class="example-margin"
+                                      formControlName="temperature1"
+                                      [value]="temperature1.value">Temperature</mat-checkbox>
+                        <mat-checkbox class="example-margin"
+                                      formControlName="temperature2"
+                                      [value]="temperature2.value">Apparent temperature</mat-checkbox>
+                        <mat-checkbox class="example-margin"
+                                      formControlName="humidity"
+                                      [value]="humidity.value">Humidity</mat-checkbox>
+                        <mat-checkbox class="example-margin"
+                                      formControlName="windSpeed"
+                                      [value]="windSpeed.value">Wind speed</mat-checkbox>
+              </span>
+      </mat-expansion-panel>
+
+
+<!--    chart type select-->
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            How to display
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span class="flex flex-col">
+          <mat-radio-group [formControl]="typeSelected">
+            <mat-radio-button [value]="false" (click)="setTypeSelected(false)">In different charts</mat-radio-button>
+            <mat-radio-button [value]="true" (click)="setTypeSelected(true)">In one chart</mat-radio-button>
+          </mat-radio-group>
+        </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="flex flex-row justify-end m-2">
+      <button mat-raised-button color="primary" (click)="setAllValues()">Show</button>
+    </div>
+  </mat-toolbar-row>
+
+  </mat-expansion-panel>
+</mat-accordion>
+</div>

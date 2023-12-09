@@ -1,0 +1,16 @@
+<div class="container-md grid grid-cols-1 p-7 gap-10" [ngClass]="isAllInOne ? 'lg:grid-cols-1': 'lg:grid-cols-2'">
+
+<!--  separate charts-->
+  <ng-container *ngIf="singleChartsToShow.length > 0 && !isAllInOne">
+    <ng-container *ngFor="let chart of singleChartsToShow">
+      <app-charts-element [data]="chart.data" [time]="chart.time" [chartName]="chart.name"></app-charts-element>
+    </ng-container>
+  </ng-container>
+
+<!--  united chart-->
+  <ng-container *ngIf="singleChartsToShow.length > 0 && isAllInOne">
+    <ng-container>
+      <app-charts-element [unitedData]="singleChartsToShow"></app-charts-element>
+    </ng-container>
+  </ng-container>
+</div>
