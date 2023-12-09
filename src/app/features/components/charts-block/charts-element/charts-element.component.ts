@@ -126,7 +126,11 @@ export class ChartsElementComponent implements OnInit{
         datasets: [],
       };
       for(let i=0; i<this.unitedData.length; i++){
-        this.chartData.datasets.push({data: this.unitedData[i].data, label: this.unitedData[i].name, backgroundColor: this.colors[i+this.colors.indexOf(this.currentColor)]})
+        if (this.colors[i+this.colors.indexOf(this.currentColor)]) {
+          this.chartData.datasets.push({data: this.unitedData[i].data, label: this.unitedData[i].name, backgroundColor: this.colors[i+this.colors.indexOf(this.currentColor)]})
+        } else {
+          this.chartData.datasets.push({data: this.unitedData[i].data, label: this.unitedData[i].name, backgroundColor: this.getRandomColor()})
+        }
       }
     }
   }
@@ -135,5 +139,12 @@ export class ChartsElementComponent implements OnInit{
       return undefined; // Return null if the array is empty
     }
     return Math.min(...arr);
+  }
+
+  getRandomColor(): string {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    return `rgb(${red}, ${green}, ${blue})`;
   }
 }

@@ -23,6 +23,7 @@ import { ChartsBlockComponent } from './features/components/charts-block/charts-
 import { ChartsElementComponent } from './features/components/charts-block/charts-element/charts-element.component';
 import {MatDividerModule} from "@angular/material/divider";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -32,30 +33,31 @@ import {MatRadioModule} from "@angular/material/radio";
     ChartsBlockComponent,
     ChartsElementComponent
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatExpansionModule,
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatCheckboxModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatRippleModule,
-    FormsModule,
-    ReactiveFormsModule,
-    JsonPipe,
-    NgChartsModule.forRoot(),
-    MatDividerModule,
-    MatRadioModule
-  ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatExpansionModule,
+        MatButtonModule,
+        MatCardModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatCheckboxModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatRippleModule,
+        FormsModule,
+        ReactiveFormsModule,
+        JsonPipe,
+        NgChartsModule.forRoot(),
+        MatDividerModule,
+        MatRadioModule,
+        MatTooltipModule
+    ],
   providers: [
     // {
     //   provide: DateAdapter,

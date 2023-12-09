@@ -4,10 +4,16 @@
       <h2 class="text-2xl text-blue-950 font-light tracking-tight text-blue-950">{{name}}</h2>
     </ng-container>
     <span>
-      <span class="material-symbols-outlined text-gray-400 cursor-pointer z-40" (click)="changeColor()">palette</span>
+      <span class="material-symbols-outlined text-gray-400 cursor-pointer z-40"
+            matTooltip="Click to change color"
+            (click)="changeColor()">palette</span>
       <span class="mx-4"> </span>
-      <span class="material-symbols-outlined text-gray-400 cursor-pointer" (click)="chartType = 'bar'">stacked_bar_chart</span>
-      <span class="material-symbols-outlined text-gray-400 cursor-pointer" (click)="chartType = 'line'">ssid_chart</span>
+      <span class="material-symbols-outlined text-gray-400 cursor-pointer"
+            matTooltip="Bar type chart"
+            (click)="chartType = 'bar'">stacked_bar_chart</span>
+      <span class="material-symbols-outlined text-gray-400 cursor-pointer"
+            matTooltip="Line type chart"
+            (click)="chartType = 'line'">ssid_chart</span>
     </span>
   </div>
 

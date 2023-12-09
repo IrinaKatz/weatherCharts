@@ -30,8 +30,8 @@ export class SelectorBarComponent {
     windSpeed: this.windSpeed,
   })
 
-  myFilterMin: Date = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()-5)
-  myFilterMax: Date = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+1)
+  myFilterMin: Date = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()-6)
+  myFilterMax: Date = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
 
   rangeSelected: FormGroup = new FormGroup({
     start: new FormControl<Date | null>(null),
