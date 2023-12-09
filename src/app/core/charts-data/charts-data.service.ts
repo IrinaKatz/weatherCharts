@@ -14,14 +14,7 @@ export class ChartsDataService {
   public getData(startDate: string, endDate: string): Observable<WeatherDTO> {
 
     let url = this.urlBasis+`start_date=${startDate}&end_date=${endDate}`;
-
-    return this.http.get<WeatherDTO>(url).pipe(map((data:WeatherDTO) => {
-      console.log(data);
-      return data;
-    }));
+    return this.http.get<WeatherDTO>(url);
   }
 
-  public hello() {
-    console.log('hello')
-  }
 }

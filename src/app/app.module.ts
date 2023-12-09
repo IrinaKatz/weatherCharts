@@ -11,19 +11,29 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
-import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {DateAdapter, MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {JsonPipe} from "@angular/common";
+import {CommonModule, JsonPipe} from "@angular/common";
+import {NgChartsModule} from "ng2-charts";
+import { SelectorBarComponent } from './features/components/selector-bar/selector-bar.component';
+import { ChartsBlockComponent } from './features/components/charts-block/charts-block.component';
+import { ChartsElementComponent } from './features/components/charts-block/charts-element/charts-element.component';
+import {MatDividerModule} from "@angular/material/divider";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent
+    MainPageComponent,
+    SelectorBarComponent,
+    ChartsBlockComponent,
+    ChartsElementComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -41,9 +51,18 @@ import {JsonPipe} from "@angular/common";
     MatRippleModule,
     FormsModule,
     ReactiveFormsModule,
-    JsonPipe
+    JsonPipe,
+    NgChartsModule.forRoot(),
+    MatDividerModule,
+    MatRadioModule
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: DateAdapter,
+    //   useClass: CustomMomentDateAdapter,
+    //   deps: [MAT_DATE_LOCALE],
+    // },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

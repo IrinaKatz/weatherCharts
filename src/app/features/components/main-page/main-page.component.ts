@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChartsDataService} from "../../../core/charts-data/charts-data.service";
-import {map} from "rxjs";
-import {FormControl, FormGroup} from "@angular/forms";
+import {map, Observable} from "rxjs";
 import {WeatherDTO, WeatherModel} from "../../../core/charts-data/weather-model";
 
 @Component({
@@ -11,27 +10,60 @@ import {WeatherDTO, WeatherModel} from "../../../core/charts-data/weather-model"
 })
 export class MainPageComponent implements OnInit {
 
-  chartsPanelOpenState = false;
-  typePanelOpenState = false;
-  startDate: string = '2023-12-04';
-  endDate: string = '2023-12-08';
+  weatherData: WeatherModel = {
+    temperature1: [],
+    temperature2: [],
+    humidity: [],
+    windSpeed: [],
+    time: []
+  };
 
-  weatherData!: WeatherModel;
+  allInOneSelected: boolean = false;
 
-  range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
+  isSelected: boolean = false;
 
-  constructor(private chartsDataService: ChartsDataService) { }
+  constructor(private chartsDataService: ChartsDataService) {
+  }
+
 
   ngOnInit(): void {
-    this.chartsDataService.getData(this.startDate, this.endDate).pipe(map((data: WeatherDTO) => {
-      this.weatherData.temperature1 = data.hourly.temperature_2m;
-      this.weatherData.temperature2 = data.hourly.apparent_temperature;
-      this.weatherData.humidity = data.hourly.relative_humidity_2m;
-      this.weatherData.windSpeed = data.hourly.wind_speed_180m;
-    })).subscribe();
+  }
+
+  onSelected(event: any) {
+
+    let add: string = new Date(event.range.start).getDay().toString().length === 1 ? '0' : '';
+    let dateFrom: string = `${new Date(event.range.start).getFullYear()}-${new Date(event.range.start).getMonth()+1}-${add}${new Date(event.range.start).getDate()}`;
+    let dateTo: string = `${new Date(event.range.end).getFullYear()}-${new Date(event.range.end).getMonth()+1}-${add}${new Date(event.range.end).getDate()}`;
+
+    this.getData(event.charts, event.type, dateFrom, dateTo).subscribe();
+  }
+
+  private getData(charts: any, type: boolean, dateFrom: string, dateTo: string): Observable<any> {
+
+    this.clearWeatherData();
+    this.isSelected = false;
+
+    return this.chartsDataService.getData(dateFrom, dateTo).pipe(map((data: WeatherDTO) => {
+
+      if(charts.temperature1) this.weatherData.temperature1 = data.hourly.temperature_2m;
+      if(charts.temperature2) this.weatherData.temperature2 = data.hourly.apparent_temperature;
+      if(charts.humidity) this.weatherData.humidity = data.hourly.relative_humidity_2m;
+      if(charts.windSpeed) this.weatherData.windSpeed = data.hourly.wind_speed_180m;
+      this.weatherData.time = data.hourly.time;
+      this.allInOneSelected = type;
+
+      this.isSelected = true;
+    }));
+  }
+
+  private clearWeatherData() {
+    this.weatherData = {
+      temperature1: [],
+      temperature2: [],
+      humidity: [],
+      windSpeed: [],
+      time: []
+    };
   }
 
 }

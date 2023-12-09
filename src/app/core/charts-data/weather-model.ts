@@ -13,5 +13,6 @@ export interface WeatherModel {
   temperature2: number[];
   humidity: number[];
   windSpeed: number[];
+  time: string[]
 }
 
