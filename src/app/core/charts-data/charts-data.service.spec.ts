@@ -1,9 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-
 import { ChartsDataService } from './charts-data.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {WeatherDTO} from "./weather-model";
-import {HttpClient} from "@angular/common/http";
 
 describe('ChartsDataService', () => {
   let service: ChartsDataService;

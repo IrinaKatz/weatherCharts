@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ChartsDataService} from "../../../core/charts-data/charts-data.service";
 import {map, Observable} from "rxjs";
 import {WeatherDTO, WeatherModel} from "../../../core/charts-data/weather-model";
@@ -8,7 +8,7 @@ import {WeatherDTO, WeatherModel} from "../../../core/charts-data/weather-model"
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
 
   weatherData: WeatherModel = {
     temperature1: [],
@@ -21,26 +21,27 @@ export class MainPageComponent implements OnInit {
   allInOneSelected: boolean = false;
 
   isSelected: boolean = false;
+  errorRequest = '';
 
-  constructor(private chartsDataService: ChartsDataService) {
-  }
-
-
-  ngOnInit(): void {
-  }
+  constructor(private chartsDataService: ChartsDataService) {}
 
   onSelected(event: any) {
 
-    let add: string = new Date(event.range.start).getDay().toString().length === 1 ? '0' : '';
+    let add: string = new Date(event.range.start).getDate().toString().length === 1 ? '0' : '';
     let dateFrom: string = `${new Date(event.range.start).getFullYear()}-${new Date(event.range.start).getMonth()+1}-${add}${new Date(event.range.start).getDate()}`;
     let dateTo: string = `${new Date(event.range.end).getFullYear()}-${new Date(event.range.end).getMonth()+1}-${add}${new Date(event.range.end).getDate()}`;
-
-    this.getData(event.charts, event.type, dateFrom, dateTo).subscribe();
+    if(!event.charts.temperature1 && !event.charts.temperature2 && !event.charts.humidity && !event.charts.windSpeed) {
+      this.errorRequest = 'Please select any charts to display';
+    }
+    else {
+      this.getData(event.charts, event.type, dateFrom, dateTo).subscribe({error: err => this.displayError()});
+    }
   }
 
   private getData(charts: any, type: boolean, dateFrom: string, dateTo: string): Observable<any> {
 
     this.clearWeatherData();
+    this.clearError();
     this.isSelected = false;
 
     return this.chartsDataService.getData(dateFrom, dateTo).pipe(map((data: WeatherDTO) => {
@@ -66,4 +67,11 @@ export class MainPageComponent implements OnInit {
     };
   }
 
+  displayError() {
+    this.errorRequest = 'Something went wrong. Please try to change your request';
+  }
+
+  clearError() {
+    this.errorRequest = '';
+  }
 }

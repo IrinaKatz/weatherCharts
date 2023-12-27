@@ -1,7 +1,6 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .mat-expansion-panel {
   background-color: whitesmoke;

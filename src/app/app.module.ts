@@ -58,13 +58,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatRadioModule,
         MatTooltipModule
     ],
-  providers: [
-    // {
-    //   provide: DateAdapter,
-    //   useClass: CustomMomentDateAdapter,
-    //   deps: [MAT_DATE_LOCALE],
-    // },
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
